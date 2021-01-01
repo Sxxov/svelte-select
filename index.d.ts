@@ -2,6 +2,7 @@ import type { SvelteComponent } from "svelte";
 
 export interface SelectProps {
   container?: HTMLElement;
+  Input?: SvelteComponent;
   input?: HTMLInputElement;
   Item?: any;
   Selection?: any;
