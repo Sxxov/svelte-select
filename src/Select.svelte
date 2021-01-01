@@ -15,6 +15,7 @@
 
   const dispatch = createEventDispatcher();
   export let container = undefined;
+  export let Input = undefined;
   export let input = undefined;
   export let Item = ItemComponent;
   export let Selection = SelectionComponent;
@@ -834,15 +835,16 @@
       on:focus={handleFocus} />
   {/if}
 
-  {#if isDisabled}
-    <input
+  {#if Input}
+    <svelte:component
+      this={Input}
       {..._inputAttributes}
       bind:this={input}
       on:focus={handleFocus}
       bind:value={filterText}
       placeholder={placeholderText}
       style={inputStyles}
-      disabled />
+      disabled={isDisabled} />
   {:else}
     <input
       {..._inputAttributes}
@@ -850,7 +852,8 @@
       on:focus={handleFocus}
       bind:value={filterText}
       placeholder={placeholderText}
-      style={inputStyles} />
+      style={inputStyles}
+      disabled={isDisabled} />
   {/if}
 
   {#if !isMulti && showSelectedItem}
